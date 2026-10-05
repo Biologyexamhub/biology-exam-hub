@@ -1,83 +1,93 @@
 /* =====================================================================
-   BIOLOGY EXAM HUB – script.js
+   BIOLOGY EXAM HUB - script.js
    ===================================================================== */
+
+/* YOUR WHATSAPP NUMBER: 91 + 10 digits, no spaces or + sign */
+const WHATSAPP = "91XXXXXXXXXX";
 
 /* =====================================================================
    ============== ADD NEW QUIZ HERE (OWNER ONLY) ========================
    =====================================================================
-   HOW TO ADD A QUIZ:
-   1. Find the line below that says "PASTE NEW QUIZZES BELOW THIS LINE".
-   2. Copy one block like this (from { to },) and paste it right after
-      that line:
+   FREE TEST: use "link" (the Start Test button opens it).
+   PAID TEST: use "price" and DO NOT write the quiz link here.
+              The Buy Now button opens WhatsApp with your number.
+              (Optional: add  buy: "https://your-payment-link"  to use a
+               payment link instead of WhatsApp.)
 
-      {
-        title: "Your Test Name",
-        category: "Zoology",
-        questions: 50,
-        description: "Short description of the test",
-        link: "https://your-quiz-link-here"
-      },
+   Free example:
+      { title: "Test Name", category: "Zoology", questions: 50,
+        description: "Short description", link: "https://quiz-link" },
 
-   3. Change the 5 values. KEEP the quotation marks " " and the comma
-      at the end of every block.
-   4. "category" must be EXACTLY one of:
-        NEET Biology | Zoology | Botany | General Biology | Competitive Exams
-   5. Save. The test appears automatically on the website.
+   Paid example:
+      { title: "Test Name", category: "Zoology", questions: 50,
+        description: "Short description", price: 49 },
+
+   category must be EXACTLY one of:
+   NEET Biology | Zoology | Botany | General Biology | Competitive Exams
+   Keep the comma at the end of every block.
    ===================================================================== */
 
 const CATEGORIES = ["NEET Biology", "Zoology", "Botany", "General Biology", "Competitive Exams"];
 
 const QUIZZES = [
   /* ---- PASTE NEW QUIZZES BELOW THIS LINE ---- */
-{
+
+  {
     title: "Cell Biology Test 1",
     category: "NEET Biology",
     questions: 30,
-    description: "Important Cell Biology MCQs",
-    link: "https://superb-fudge-0163b9.netlify.app"
+    description: "Important conceptual Cell Biology MCQs",
+    link: "PASTE-QUIZ-LINK-HERE"
+  },
+  {
+    title: "Plant Kingdom Test 1",
+    category: "Botany",
+    questions: 50,
+    description: "Algae, bryophytes, pteridophytes, gymnosperms and more",
+    link: "PASTE-QUIZ-LINK-HERE"
   },
   {
     title: "Human Physiology Test 1",
     category: "Zoology",
     questions: 50,
-    description: "Important Human Physiology MCQs",
-    link: "https://tranquil-scone-c06f8f.netlify.app"
+    description: "Important Human Physiology MCQs with explanations",
+    price: 29
   },
   {
     title: "NEET Biology Mock Test 1",
     category: "NEET Biology",
     questions: 90,
-    description: "Full-length NEET style Biology practice paper",
-    link: "https://earnest-donut-c00fde.netlify.app"
-  },
-  {
-    title: "Plant Kingdom Test",
-    category: "Botany",
-    questions: 40,
-    description: "Algae, bryophytes, pteridophytes and more",
-    link: "https://velvety-capybara-964302.netlify.app"
+    description: "Full-length 90 question NEET Biology mock with timer",
+    price: 49
   }
 
-  /* ---- PASTE NEW QUIZZES ABOVE THIS LINE (keep the comma after each block) ---- */
+  /* ---- PASTE NEW QUIZZES ABOVE THIS LINE ---- */
 ];
 
 /* =====================================================================
-   ============== END OF OWNER AREA – DO NOT EDIT BELOW =================
+   ============== END OF OWNER AREA - DO NOT EDIT BELOW =================
    ===================================================================== */
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 function cardHTML(q) {
-  const ready = q.link && q.link.indexOf("PASTE-QUIZ-LINK") === -1;
-  const btn = ready
-    ? `<a class="btn main" href="${esc(q.link)}" target="_blank" rel="noopener noreferrer">Start Test</a>`
-    : `<span class="btn" aria-disabled="true">Coming soon</span>`;
+  const paid = Number(q.price) > 0;
+  let btn;
+  if (paid) {
+    const href = q.buy || "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hi, I want to buy: " + q.title);
+    btn = `<a class="btn main" href="${esc(href)}" target="_blank" rel="noopener noreferrer">Buy Now - ₹${esc(q.price)}</a>`;
+  } else if (q.link && q.link.indexOf("PASTE-QUIZ-LINK") === -1) {
+    btn = `<a class="btn main" href="${esc(q.link)}" target="_blank" rel="noopener noreferrer">Start Test</a>`;
+  } else {
+    btn = `<span class="btn" aria-disabled="true">Coming soon</span>`;
+  }
+  const price = paid ? `<b style="color:#c0392b">Paid ₹${esc(q.price)}</b>` : `<b style="color:#1f8a5b">Free</b>`;
   return `<article class="card">
     <span class="tag">${esc(q.category)}</span>
     <h3>${esc(q.title)}</h3>
     <p>${esc(q.description)}</p>
-    <div class="meta">${esc(q.questions)} questions</div>
+    <div class="meta">${esc(q.questions)} questions · ${price}</div>
     ${btn}
   </article>`;
 }
@@ -113,4 +123,4 @@ if ($("tests")) {
   search.addEventListener("input", render);
   filter.addEventListener("change", render);
   render();
-              }
+                                      }
