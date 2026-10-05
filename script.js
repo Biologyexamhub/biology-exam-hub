@@ -55,7 +55,7 @@ const QUIZZES = [
     category: "Botany",
     questions: 40,
     description: "Algae, bryophytes, pteridophytes and more",
-    link: "PASTE-QUIZ-LINK-HERE"
+    link: "https://velvety-capybara-964302.netlify.app"
   }
 
   /* ---- PASTE NEW QUIZZES ABOVE THIS LINE (keep the comma after each block) ---- */
