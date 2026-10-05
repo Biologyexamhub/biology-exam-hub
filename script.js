@@ -34,14 +34,14 @@ const QUIZZES = [
     category: "NEET Biology",
     questions: 30,
     description: "Important Cell Biology MCQs",
-    link: "https://yahan-apna-quiz-link"
+    link: "https://superb-fudge-0163b9.netlify.app"
   },
   {
     title: "Human Physiology Test 1",
     category: "Zoology",
     questions: 50,
     description: "Important Human Physiology MCQs",
-    link: "PASTE-QUIZ-LINK-HERE"
+    link: "https://tranquil-scone-c06f8f.netlify.app"
   },
   {
     title: "NEET Biology Mock Test 1",
