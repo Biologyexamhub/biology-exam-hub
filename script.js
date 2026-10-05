@@ -29,7 +29,13 @@ const CATEGORIES = ["NEET Biology", "Zoology", "Botany", "General Biology", "Com
 
 const QUIZZES = [
   /* ---- PASTE NEW QUIZZES BELOW THIS LINE ---- */
-
+{
+    title: "Cell Biology Test 1",
+    category: "NEET Biology",
+    questions: 30,
+    description: "Important Cell Biology MCQs",
+    link: "https://yahan-apna-quiz-link"
+  },
   {
     title: "Human Physiology Test 1",
     category: "Zoology",
