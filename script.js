@@ -48,7 +48,7 @@ const QUIZZES = [
     category: "NEET Biology",
     questions: 90,
     description: "Full-length NEET style Biology practice paper",
-    link: "PASTE-QUIZ-LINK-HERE"
+    link: "https://earnest-donut-c00fde.netlify.app"
   },
   {
     title: "Plant Kingdom Test",
