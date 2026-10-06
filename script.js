@@ -37,14 +37,14 @@ const QUIZZES = [
     category: "NEET Biology",
     questions: 30,
     description: "Important conceptual Cell Biology MCQs",
-    link: "PASTE-QUIZ-LINK-HERE"
+    link: "https://superb-fudge-0163b9.netlify.app"
   },
   {
     title: "Plant Kingdom Test 1",
     category: "Botany",
     questions: 50,
     description: "Algae, bryophytes, pteridophytes, gymnosperms and more",
-    link: "PASTE-QUIZ-LINK-HERE"
+    link: "https://tranquil-scone-c06f8f.netlify.app"
   },
   {
     title: "Human Physiology Test 1",
